@@ -3,13 +3,13 @@ require "rails_helper"
 describe "Edit paper page", type: :feature do
   
     before(:each) do
-    @author = FactoryBot.create :author
+    @authors = FactoryBot.create_list(:author, 3)
     @paper = FactoryBot.create :paper
-    @paper.authors << @author
   end
 
   it "should list the authors" do
     visit edit_paper_path(@paper)
+    @selection = find("select[multiple='multiple']")
     @authors.each do |author|
         expect(@selection).to have_text(author.name)
     end
