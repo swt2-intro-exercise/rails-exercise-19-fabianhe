@@ -6,6 +6,10 @@ class AuthorsController < ApplicationController
 		@author = Author.find(params[:id])
 	end
 
+	def index
+		@authors = Author.all()
+	end
+
     def create
 		@author = Author.new(author_params)
 		@author.save
