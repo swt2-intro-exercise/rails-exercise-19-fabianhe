@@ -1,5 +1,6 @@
 class AuthorsController < ApplicationController
-    def new
+	def new
+		@author = Author.new
 	end
 	
 	def show
@@ -12,9 +13,14 @@ class AuthorsController < ApplicationController
 
     def create
 		@author = Author.new(author_params)
-		@author.save
+		#@author.save
 		# redirect_to root_path, notice: 'Success!'
-		redirect_to @author
+		#redirect_to @author
+		if @author.save
+			redirect_to @author
+		else
+			render "new"
+		end
 	end
 
 	private
